@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            height:fit-content;
+            margin-top: 60px;
+            width: 100%;
+  
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="/" class="flex items-center py-4 px-2">
+                        <span class="font-semibold text-gray-500 text-lg">Brand Name</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold">Home</a>
+                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Features</a>
+                    <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Pricing</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500 hover:text-green-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path class="menu-icon" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path class="close-icon hidden" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50">
+            <ul>
+                <li class="active"><a href="#" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
+                <li><a href="" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Features</a></li>
+                <li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto mt-5">
+        <h1 class="text-3xl font-bold mb-4">Product List</h1>
+        <form method="get" class="mb-4">
+
+            <div class="flex px-6">
+                <input type="text" name="q" class="rounded-lg form-input pl-4 mr-2 w-full" placeholder="Search..." value="{{ query }}">
+                <button type="submit" class="btn bg-green-500 rounded-lg text-white px-4 py-2">Search</button>
+            </div>
+       
+        </form>
+    </div>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-8 mx-auto">
+            <div class="flex flex-wrap -m-4">
+                {% for product in products %}
+                    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                        <a href="{% url 'product_detail' product.pk %}" class="block relative h-48 rounded overflow-hidden">
+                            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ product.image.url }}">
+                        </a>
+                        <div class="mt-4">
+                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ product.category}}</h3>
+                            <h2 class="text-gray-900 title-font text-lg font-medium">{{ product.name }}</h2>
+                            <p class="mt-1">${{ product.price }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <script>
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+        const menuIcon = document.querySelector(".menu-icon");
+        const closeIcon = document.querySelector(".close-icon");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("open");
+            menuIcon.classList.toggle("hidden");
+            closeIcon.classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>
