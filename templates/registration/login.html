@@ -14,8 +14,8 @@
                 {% csrf_token %}
                 {% if form.non_field_errors %}
                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                        <strong class="font-bold">Error!</strong>
-                        <span class="block sm:inline">{{ form.non_field_errors }}</span>
+                        
+                        <span class="block sm:inline">Username yoki parol xato</span>
                     </div>
                 {% endif %}
                 <div>
@@ -26,7 +26,7 @@
                     {% endif %}
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Parol</label>
                     <input type="password" name="password" id="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     {% if form.errors.password %}
                         <p class="text-red-500 text-xs italic">{{ form.errors.password }}</p>

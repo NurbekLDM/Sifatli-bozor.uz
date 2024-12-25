@@ -13,33 +13,33 @@
           
         </div>
         <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Products</h2>
-            <a href="{% url 'product_add' %}" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 mb-4 inline-block">Add Product</a>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Mahsulotlar</h2>
+            <a href="{% url 'product_add' %}" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 mb-4 inline-block">Mahsulot qo'shish</a>
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b">Picture</th>
-                            <th class="py-2 px-4 border-b">Name</th>
-                            <th class="py-2 px-4 border-b">Price</th>
-                            <th class="py-2 px-4 border-b">Category</th>
-                            <th class="py-2 px-4 border-b">Created At</th>
-                            <th class="py-2 px-4 border-b">Actions</th>
+                            <th class="py-2 px-4 border-b">Rasm</th>
+                            <th class="py-2 px-4 border-b">Nomi</th>
+                            <th class="py-2 px-4 border-b">Narxi</th>
+                            <th class="py-2 px-4 border-b">Kategoriyasi</th>
+                            <th class="py-2 px-4 border-b">Yaratilgan sana</th>
+                            <th class="py-2 px-4 border-b">Harakat</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for product in products %}
                             <tr>
                                 <td class="py-2 px-4 border-b">
-                                    <img alt="ecommerce" class="object-cover object-center rounded-lg w-24 h-24 block" src="{{ product.image.url }}">
+                                    <img alt="ecommerce" class="object-cover object-center rounded-lg w-24 h-24 block" src="{{ product.image_url }}">
                                 </td>
-                                <td class="py-2 px-4 border-b">{{ product.name }}</td>
-                                <td class="py-2 px-4 border-b">${{ product.price }}</td>
-                                <td class="py-2 px-4 border-b">{{ product.category.name }}</td>
-                                <td class="py-2 px-4 border-b">{{ product.created_at }}</td>
-                                <td class="py-2 px-4 border-b">
-                                    <a href="{% url 'product_edit' product.pk %}" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                    <button onclick="openModal('{{ product.pk }}', '{{ product.name }}')" class="text-red-500 hover:text-red-700 ml-4">Delete</button>
+                                <td class="py-2 pl-12 border-b">{{ product.name }}</td>
+                                <td class="py-2 pl-12 border-b">{{ product.price }} so'm</td>
+                                <td class="py-2 pl-12 border-b">{{ product.category.name }}</td>
+                                <td class="py-2 pl-12 border-b">{{ product.created_at }}</td>
+                                <td class="py-2 pl-12 border-b">
+                                    <a href="{% url 'product_edit' product.pk %}" class=" text-blue-500 hover:text-blue-700">Tahrirlash</a>
+                                    <button onclick="openModal('{{ product.pk }}', '{{ product.name }}')" class=" text-red-500 hover:text-red-700 ml-4">O'chirish</button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -48,13 +48,13 @@
             </div>
         </div>
         <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Inquiries</h2>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Buyurtmalar</h2>
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b">Picture</th>
-                            <th class="py-2 px-4 border-b">Product</th>
+                            <th class="py-2 px-4 border-b">Rasm</th>
+                            <th class="py-2 px-4 border-b">Mahsulot nomi</th>
                             <th class="py-2 px-4 border-b">Ism</th>
                             <th class="py-2 px-4 border-b">Familiya</th>
                             <th class="py-2 px-4 border-b">Tel</th>
@@ -65,7 +65,7 @@
                         {% for inquiry in inquiries %}
                             <tr>
                                 <td class="py-2 px-4 border-b">
-                                    <img alt="ecommerce" class="object-cover object-center rounded-lg w-24 h-24 block" src="{{ inquiry.product.image.url }}">
+                                    <img alt="ecommerce" class="object-cover object-center rounded-lg w-24 h-24 block" src="{{ inquiry.product_image_url }}">
                                 </td>
                                 <td class="py-2 px-8 border-b">{{ inquiry.product.name }}</td>
                                 <td class="py-2 px-8 border-b">{{ inquiry.name }}</td>
@@ -79,14 +79,14 @@
             </div>
         </div>
         <div class="bg-white shadow-md rounded-lg p-6">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Categories</h2>
-            <button onclick="openCategoryAddModal()" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 mb-4 inline-block">Add Category</button>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Kategoriyalar</h2>
+            <button onclick="openCategoryAddModal()" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 mb-4 inline-block">Kategoriya qo'shish</button>
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b">Name</th>
-                            <th class="py-2 px-4 border-b">Actions</th>
+                            <th class="py-2 px-4 border-b">Nomi</th>
+                            <th class="py-2 px-4 border-b">Harakatlar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,8 +94,8 @@
                             <tr>
                                 <td class="py-2 px-4 border-b">{{ category.name }}</td>
                                 <td class="py-2 px-4 border-b">
-                                    <button onclick="openCategoryEditModal('{{ category.pk }}', '{{ category.name }}')" class="text-blue-500 hover:text-blue-700">Edit</button>
-                                    <button onclick="openCategoryDeleteModal('{{ category.pk }}', '{{ category.name }}')" class="text-red-500 hover:text-red-700 ml-4">Delete</button>
+                                    <button onclick="openCategoryEditModal('{{ category.pk }}', '{{ category.name }}')" class="text-blue-500 hover:text-blue-700">Tahrirlash</button>
+                                    <button onclick="openCategoryDeleteModal('{{ category.pk }}', '{{ category.name }}')" class="text-red-500 hover:text-red-700 ml-4">O'chirish</button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -121,9 +121,9 @@
                             </svg>
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Delete Item</h3>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Elementni o'chirish</h3>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-500">Are you sure you want to delete <span id="itemName"></span>? This action cannot be undone.</p>
+                                <p class="text-sm text-gray-500">Rostdan ham <span id="itemName"></span> ni o'chirmoqchimisiz Bu harakatni tiklab bo'lmaydi</p>
                             </div>
                         </div>
                     </div>
@@ -131,9 +131,9 @@
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <form method="post" id="deleteForm">
                         {% csrf_token %}
-                        <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Delete</button>
+                        <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">O'chirish</button>
                     </form>
-                    <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+                    <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Bekor qilish</button>
                 </div>
             </div>
         </div>
@@ -159,15 +159,15 @@
                             <div class="mt-2">
                                 <form method="post" id="categoryForm">
                                     {% csrf_token %}
-                                    <input type="text" name="name" id="categoryName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Category Name">
+                                    <input type="text" name="name" id="categoryName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Kategoriya nomi">
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="submit" form="categoryForm" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
-                    <button type="button" onclick="closeCategoryModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+                    <button type="submit" form="categoryForm" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Saqlash</button>
+                    <button type="button" onclick="closeCategoryModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Bekor qilish</button>
                 </div>
             </div>
         </div>
@@ -188,14 +188,14 @@
 
         function openCategoryAddModal() {
             document.getElementById('categoryForm').action = `/admin-panel/category/add/`;
-            document.getElementById('categoryModalTitle').innerText = `Add Category`;
+            document.getElementById('categoryModalTitle').innerText = `Kategoriya qo'shish`;
             document.getElementById('categoryName').value = '';
             document.getElementById('categoryModal').classList.remove('hidden');
         }
 
         function openCategoryEditModal(categoryId, categoryName) {
             document.getElementById('categoryForm').action = `/admin-panel/category/${categoryId}/edit/`;
-            document.getElementById('categoryModalTitle').innerText = 'Edit Category';
+            document.getElementById('categoryModalTitle').innerText = 'Kategoriyani tahrirlash';
             document.getElementById('categoryName').value = categoryName;
             document.getElementById('categoryModal').classList.remove('hidden');
         }

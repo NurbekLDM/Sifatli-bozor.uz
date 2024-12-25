@@ -7,6 +7,13 @@ from .forms import ProductForm, InquiryForm, CategoryForm
 
 
 
+def homePage(request):
+    return render(request, 'products/home.html')
+
+@login_required
+def admin_panel(request):
+    return render(request, 'products/admin_panel.html')
+
 @login_required
 @staff_member_required
 def admin_panel(request):
@@ -108,8 +115,32 @@ def product_detail(request, pk):
 
 def product_list(request):
     query = request.GET.get('q', '')
-    products = Product.objects.filter(
-        Q(name__icontains=query) | Q(description__icontains=query)
-    )
-    return render(request, 'products/product_list.html', {'products': products, 'query': query})
-    redirect('product_list')
+    selected_category = request.GET.get('category', '')
+    sort = request.GET.get('sort', '')
+
+    products = Product.objects.all()
+
+    if query:
+        products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
+
+    if selected_category:
+        products = products.filter(category_id=selected_category)
+
+    if sort == 'price_asc':
+        products = products.order_by('price')
+    elif sort == 'price_desc':
+        products = products.order_by('-price')
+
+    categories = Category.objects.all()
+
+    for product in products:
+        if not product.image:
+            product.image_url = '/static/images/default_product_image.jpg'
+
+    return render(request, 'products/product_list.html', {
+        'products': products,
+        'query': query,
+        'categories': categories,
+        'selected_category': selected_category,
+        'sort': sort,
+    })

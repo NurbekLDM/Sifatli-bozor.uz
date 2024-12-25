@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-x394a#m&m*(4(q)4ez%lxrq5++h$-i6s$z4o4=$a!kl#o&3p!g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -119,8 +119,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 import os
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'admin_panel'
+
+LOGIN_REDIRECT_URL = '/admin_panel/'
 
 
 MEDIA_URL = '/media/'  

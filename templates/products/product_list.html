@@ -29,8 +29,8 @@
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="/" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold">Home</a>
-                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Features</a>
+                    <a href="/" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold">Bosh sahifa</a>
+                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Mahsulotlar</a>
                     <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Pricing</a>
                 </div>
                 <div class="md:hidden flex items-center">
@@ -45,19 +45,33 @@
         </div>
         <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50">
             <ul>
-                <li class="active"><a href="#" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
-                <li><a href="" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Features</a></li>
+                <li><a href="/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Bosh sahifa</a></li>
+                <li><a href="" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Mahsulotlar</a></li>
                 <li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Pricing</a></li>
             </ul>
         </div>
     </nav>
     <div class="container mx-auto mt-5">
-        <h1 class="text-3xl font-bold mb-4">Product List</h1>
+        <h1 class="text-3xl ml-4 font-bold mb-4">Mahsulotlar</h1>
         <form method="get" class="mb-4">
 
             <div class="flex px-6">
-                <input type="text" name="q" class="rounded-lg form-input pl-4 mr-2 w-full" placeholder="Search..." value="{{ query }}">
-                <button type="submit" class="btn bg-green-500 rounded-lg text-white px-4 py-2">Search</button>
+                <input type="text" name="q" class="rounded-lg form-input pl-4 mr-2 w-full" placeholder="Mahsulot izlash..." value="{{ query }}">
+                <button type="submit" class="btn bg-green-500 rounded-lg text-white px-4 py-2">Izlash</button>
+            </div>
+            <div class="flex px-6 mt-4">
+                <select name="category" class="rounded-lg form-select mr-2 w-full">
+                    <option value="">Barcha kategoriyalar</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.id == selected_category %}selected{% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <select name="sort" class="rounded-lg form-select w-full">
+                    <option value="">Saralash</option>
+                    <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Narx bo'yicha (O'sish tartibida)</option>
+                    <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Narx bo'yicha (Kamayish tartibida)</option>
+                </select>
+                <button type="submit" class="btn bg-green-500 rounded-lg text-white px-4 py-2 ml-2">Saralash</button>
             </div>
        
         </form>
@@ -73,10 +87,10 @@
                         <div class="mt-4">
                             <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ product.category}}</h3>
                             <h2 class="text-gray-900 title-font text-lg font-medium">{{ product.name }}</h2>
-                            <p class="mt-1">${{ product.price }}</p>
+                            <p class="mt-1">{{ product.price }} so'm</p>
                         </div>
                     </div>
-                {% endfor %}
+                {% endfor %}            
             </div>
         </div>
     </section>
