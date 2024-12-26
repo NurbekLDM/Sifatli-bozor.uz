@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-size: 200px;
+        text-anchor: middle;
+        font-family: AkiraExpanded-SuperBold, "Akira Expanded";
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .cls-1 {
+        fill: #3dba05;
+      }
+
+      .cls-2 {
+        fill: #3cba05;
+      }
+    </style>
+  </defs>
+  <text id="Bozor" class="cls-1" transform="translate(560.904 691.775) scale(1.072)"><tspan x="0">Bozor</tspan></text>
+  <text id="Sifatli" class="cls-2" transform="translate(540 529.361) scale(1.072)"><tspan x="0">Sifatli</tspan></text>
+</svg>
