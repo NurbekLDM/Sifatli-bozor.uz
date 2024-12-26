@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Sifatli Bozor</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="icon" href="{% static 'logo/logo.png' %}"  type="images/png">
     <style>
         .mobile-menu {
             transform: translateX(100%);
@@ -31,7 +33,7 @@
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="/" class="py-4 px-2 text-gray-500 hover:text-green-500 transition duration-300 font-semibold">Bosh sahifa</a>
                     <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Mahsulotlar</a>
-                    <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Pricing</a>
+    
                 </div>
                 <div class="md:hidden flex items-center">
                     <button class="outline-none mobile-menu-button">
@@ -47,7 +49,6 @@
             <ul>
                 <li><a href="/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Bosh sahifa</a></li>
                 <li><a href="" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Mahsulotlar</a></li>
-                <li><a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Pricing</a></li>
             </ul>
         </div>
     </nav>
@@ -67,7 +68,7 @@
                     {% endfor %}
                 </select>
                 <select name="sort" class="rounded-lg form-select w-full">
-                    <option value="">Saralash</option>
+                    <option  value="">Saralash</option>
                     <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Narx bo'yicha (O'sish tartibida)</option>
                     <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Narx bo'yicha (Kamayish tartibida)</option>
                 </select>
@@ -85,8 +86,8 @@
                             <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ product.image.url }}">
                         </a>
                         <div class="mt-4">
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ product.category}}</h3>
-                            <h2 class="text-gray-900 title-font text-lg font-medium">{{ product.name }}</h2>
+                            <h3 class="text-gray-500 text-xs w-fit tracking-widest title-font mb-1">{{ product.category}}</h3>
+                            <h2 class="text-gray-900 title-font text-lg font-medium break-words">{{ product.name }}</h2>
                             <p class="mt-1">{{ product.price }} so'm</p>
                         </div>
                     </div>
@@ -94,6 +95,23 @@
             </div>
         </div>
     </section>
+
+
+    <footer class="w-full py-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <p href="/" class="flex justify-center w-content items-center gap-2">
+                    <img src="{% static 'logo/pngLogo.png' %}" alt="logo" class="w-16 h-16">
+                    <span class="text-2xl font-bold text-gray-500">Sifatli Bozor</span>
+                </p>
+                    <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-4 border-b border-gray-200">
+                        <li><a href="/" class="text-gray-800 hover:text-gray-900">Bosh Sahifa</a></li>
+                        <li><a href="/products/" class=" text-gray-800 hover:text-gray-900">Mahsulotlar</a></li>
+                    </ul>
+                    <span class="text-lg text-gray-500 text-center block">©<a href="/">Sifatli Bozor</a> 2024, Xizmatlar litsenziyalangan.</span>
+            </div>
+        </div>
+    </footer>
     <script>
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");

@@ -1,14 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Product, Inquiry, Category
+from .models import Product, Inquiry, Category, HeroImage
 from django.db.models import Q  
 from .forms import ProductForm, InquiryForm, CategoryForm
 
 
 
 def homePage(request):
-    return render(request, 'products/home.html')
+    hero_image = HeroImage.objects.first()
+    latest_products = Product.objects.order_by('-created_at')[:3]
+    return render(request, 'products/home.html', {
+        'hero_image': hero_image,
+        'latest_products': latest_products,
+    })
 
 @login_required
 def admin_panel(request):
