@@ -1,6 +1,13 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import ProductSitemap, StaticViewSitemap
 from . import views
+
+sitemaps = {
+    'products': ProductSitemap,
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     path('products/', views.product_list, name='product_list'),
@@ -14,4 +21,5 @@ urlpatterns = [
     # path('login/', auth_views.LoginView.as_view(), name='login'),
     # path('admin_panel/', views.admin_panel, name='admin_panel'),
     path('', views.homePage, name='homePage'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
