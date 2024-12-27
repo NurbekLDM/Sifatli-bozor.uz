@@ -1,9 +1,9 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-load_dotenv('.env')
-BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(".env")
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -15,7 +15,6 @@ DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = [host for host in os.getenv("ALLOWED_HOSTS").split(",") if host]
 
 INSTALLED_APPS = [
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

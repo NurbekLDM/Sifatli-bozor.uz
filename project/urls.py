@@ -7,7 +7,7 @@ import os
 admin_url = os.environ.get("ADMIN_URL", "admin") + "/"
 
 urlpatterns = [
-    path(f'{admin_url}/', admin.site.urls),
+    path(f"{admin_url}/", admin.site.urls),
     path("", include("products.urls")),
 ]
 
