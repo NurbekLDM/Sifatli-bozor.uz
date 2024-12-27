@@ -134,7 +134,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+=======
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+>>>>>>> Stashed changes
 =======
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 >>>>>>> Stashed changes
