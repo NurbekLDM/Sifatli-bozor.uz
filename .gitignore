@@ -5,8 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-.idea
-.idea/
+
 media/*.jpg
 media/*.jpeg
 media/*.png
