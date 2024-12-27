@@ -7,7 +7,19 @@ __pycache__/
 *.so
 .idea
 .idea/
-media/*
+media/*.jpg
+media/*.jpeg
+media/*.png
+media/*.gif
+media/*.svg
+media/*.webp
+media/*.ico
+media/*.bmp
+media/*.tiff
+media/*.tif
+media/*.mp4
+media/*.webm
+media/*.ogg
 *.sqlite3
 # Distribution / packaging
 .Python
