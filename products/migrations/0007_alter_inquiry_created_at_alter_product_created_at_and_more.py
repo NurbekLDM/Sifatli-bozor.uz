@@ -7,23 +7,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0006_heroimage_alter_inquiry_created_at_and_more'),
+        ("products", "0006_heroimage_alter_inquiry_created_at_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='inquiry',
-            name='created_at',
+            model_name="inquiry",
+            name="created_at",
             field=models.DateTimeField(default=django.utils.timezone.now),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='created_at',
+            model_name="product",
+            name="created_at",
             field=models.DateTimeField(default=django.utils.timezone.now),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='price',
+            model_name="product",
+            name="price",
             field=models.DecimalField(decimal_places=0, max_digits=20),
         ),
     ]

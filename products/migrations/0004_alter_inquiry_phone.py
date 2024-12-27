@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0003_category_product_category'),
+        ("products", "0003_category_product_category"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='inquiry',
-            name='phone',
-            field=models.CharField(max_length=18, validators=[products.models.validate_uzbekistan_phone]),
+            model_name="inquiry",
+            name="phone",
+            field=models.CharField(
+                max_length=18, validators=[products.models.validate_uzbekistan_phone]
+            ),
         ),
     ]

@@ -7,26 +7,48 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0005_alter_inquiry_phone'),
+        ("products", "0005_alter_inquiry_phone"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HeroImage',
+            name="HeroImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(blank=True, null=True, upload_to='hero_images/')),
-                ('description', models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(blank=True, null=True, upload_to="hero_images/"),
+                ),
+                (
+                    "description",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
             ],
         ),
         migrations.AlterField(
-            model_name='inquiry',
-            name='created_at',
-            field=models.DateTimeField(default=datetime.datetime(2024, 12, 26, 12, 44, 46, 65974, tzinfo=datetime.timezone.utc)),
+            model_name="inquiry",
+            name="created_at",
+            field=models.DateTimeField(
+                default=datetime.datetime(
+                    2024, 12, 26, 12, 44, 46, 65974, tzinfo=datetime.timezone.utc
+                )
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='created_at',
-            field=models.DateTimeField(default=datetime.datetime(2024, 12, 26, 12, 44, 46, 23991, tzinfo=datetime.timezone.utc)),
+            model_name="product",
+            name="created_at",
+            field=models.DateTimeField(
+                default=datetime.datetime(
+                    2024, 12, 26, 12, 44, 46, 23991, tzinfo=datetime.timezone.utc
+                )
+            ),
         ),
     ]
