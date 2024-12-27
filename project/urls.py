@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import os
 
-admin_url = os.environ.get("ADMIN_URL", "admin") + "/"
+admin_url = os.environ.get("ADMIN_URL", "admin")
 
 urlpatterns = [
     path(f"{admin_url}/", admin.site.urls),
