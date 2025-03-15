@@ -7,10 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "uog4p-ygLcfOk0a_rRu-vYpvox4EJssRMADRWQRSkGAK7qoHcxnMHrah0tg5z9jte9U"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False")
+DEBUG = os.getenv("DEBUG", "True")
 
 
 # ALLOWED_HOSTS = [host for host in os.getenv("ALLOWED_HOSTS").split(",") if host]
@@ -35,6 +35,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'products.middleware.SessionExpiryMiddleware',
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -95,5 +96,11 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Tashkent"
 USE_I18N = True
 USE_TZ = True
-LOGIN_REDIRECT_URL = "/admin_panel/"
+LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = "admin_panel/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Session settings
+SESSION_COOKIE_AGE = 3 * 24 * 60 * 60  # 3 days in seconds
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_SAVE_EVERY_REQUEST = True  # Updates the session expiry time on each request

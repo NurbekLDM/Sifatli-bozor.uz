@@ -6,18 +6,85 @@
     <title>Sifatli Bozor</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="icon" href="{% static 'logo/logo.png' %}"  type="images/png">
+    <link rel="icon" href="{% static 'logo/logo.png' %}" type="images/png">
     <style>
+        /* Enhanced Navigation Styles */
+        nav {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
-            height:fit-content;
             margin-top: 60px;
             width: 100%;
-  
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         }
+
         .mobile-menu.open {
             transform: translateX(0);
+        }
+
+        .mobile-menu ul li a {
+            padding: 1rem 1.5rem;
+            color: #374151;
+            font-weight: 500;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .mobile-menu ul li a:hover {
+            background: #10b981;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Hero Section */
+        #hero-image img {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        #hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Product Cards */
+        .product-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Buttons */
+        button, .btn {
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
         }
     </style>
     <meta property="og:title" content="Sifatli Bozor">
@@ -29,24 +96,23 @@
     <meta name="twitter:description" content="Eng yangi va sifatli mahsulotlar. Avtomobilingiz uchun kerakli qismlarni tez va ishonchli tarzda sotib olish uchun qulay va zamonaviy platformamizdan foydalaning.">
     <meta name="twitter:image" content="{{ hero_image.image.url }}">
 </head>
-<body>
+<body class="bg-gray-50">
     
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between">
                 <div class="flex space-x-7">
-                    <a href="/" class="flex items-center py-4 px-2">
-                        <span class="font-semibold text-gray-500 text-lg">Sifatli Bozor</span>
+                    <a href="/" class="flex items-center py-4 px-2 transform hover:scale-105 transition duration-300">
+                        <span class="font-bold text-gray-800 text-xl tracking-tight">Sifatli Bozor</span>
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="/" class="py-4 px-2 text-gray-500 hover:text-green-500 transition duration-300  font-semibold">Bosh sahifa</a>
-                    <a href="products/" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Mahsulotlar</a>
-
+                    <a href="/" class="py-4 px-4 text-gray-700 hover:text-green-600 transition duration-300 font-medium rounded-full hover:bg-green-50">Bosh sahifa</a>
+                    <a href="products/" class="py-4 px-4 text-gray-700 font-medium hover:text-green-600 transition duration-300 rounded-full hover:bg-green-50">Mahsulotlar</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button class="outline-none mobile-menu-button">
-                        <svg class="w-6 h-6 text-gray-500 hover:text-green-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <button class="outline-none mobile-menu-button p-2 rounded-full hover:bg-gray-100">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-green-600" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path class="menu-icon" d="M4 6h16M4 12h16M4 18h16"></path>
                             <path class="close-icon hidden" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -54,51 +120,41 @@
                 </div>
             </div>
         </div>
-        <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50">
+        <div class="mobile-menu fixed top-0 right-0 w-64 h-full shadow-xl z-50">
             <ul>
-                <li><a href="/" class="block text-sm px-2 py-4 hover:bg-green-500 font-semibold transition duration-300">Bosh sahifa</a></li>
-                <li><a href="products/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Mahsulotlar</a></li>
-               
+                <li><a href="/" class="block text-base transition duration-300">Bosh sahifa</a></li>
+                <li><a href="products/" class="block text-base transition duration-300">Mahsulotlar</a></li>
             </ul>
         </div>
     </nav>
 
-
-
-    <section class="lg:pt-20 pt-0  lg:pl-8 h-full">
-      <div
-        class="rounded-2xl py-10 overflow-hidden m-5 lg:m-0 2xl:py-16 xl:py-8  lg:rounded-tl-2xl lg:rounded-bl-2xl ">
+    <section class="lg:pt-20 pt-0 lg:pl-8 h-full">
+      <div class="rounded-2xl py-10 overflow-hidden m-5 lg:m-0 2xl:py-16 xl:py-8 lg:rounded-tl-2xl lg:rounded-bl-2xl bg-white shadow-xl">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 gap-14 items-center lg:grid-cols-12 lg:gap32">
+          <div class="grid grid-cols-1 gap-14 items-center lg:grid-cols-12 lg:gap-32">
             <div class="w-full xl:col-span-5 lg:col-span-6 2xl:-mx-5 xl:-mx-0">
-              <div class="flex items-center text-sm font-medium text-gray-500 justify-center lg:justify-start">
-                <span class="bg-green-500 py-1 px-3 rounded-2xl text-xs font-medium text-white mr-3 ">#1</span>
+              <div class="flex items-center text-sm font-medium text-gray-600 justify-center lg:justify-start">
+                <span class="bg-green-500 py-1 px-4 rounded-full text-xs font-semibold text-white mr-3 shadow-md">#1</span>
                 Sifat
               </div>
-              <h1 class="py-8 text-center text-gray-900 font-bold font-manrope text-5xl lg:text-left leading-[70px]">
-                Eng yangi va sifatli <span class="text-green-500">Mahsulotlar</span>
+              <h1 class="py-8 text-center text-gray-900 font-extrabold font-manrope text-5xl lg:text-left leading-tight tracking-tight">
+                Eng yangi va sifatli <span class="text-green-600">Mahsulotlar</span>
               </h1>
-              <p class=" text-gray-500 text-lg text-center lg:text-left">
+              <p class="text-gray-600 text-lg text-center lg:text-left leading-relaxed">
                 Avtomobilingiz uchun kerakli qismlarni tez va ishonchli tarzda sotib olish uchun qulay va zamonaviy platformamizdan foydalaning. 
               </p>
-              <div
-                class="relative p-1.5 my-10  flex  items-center gap-y-4 h-auto md:h-16 flex-col md:flex-row justify-between rounded-full md:shadow-[0px 15px 30px -4px rgba(16, 24, 40, 0.03)] border border-transparent md:bg-white transition-all duration-500 ">
+              <div class="relative p-1.5 my-10 flex items-center gap-y-4 h-auto md:h-16 flex-col md:flex-row justify-between rounded-full bg-gray-50 shadow-md border border-gray-100 transition-all duration-500">
                 <a href="/products/"> 
-                <button
-                  class="bg-green-500 rounded-full py-3 px-7 text-base font-semibold text-white hover:bg-green-600 cursor-pointer transition-all duration-500 md:w-fit w-full">Boshlash
-                </button>
+                <button class="bg-green-500 rounded-full py-3 px-8 text-base font-semibold text-white hover:bg-green-600 cursor-pointer transition-all duration-500 md:w-fit w-full">Boshlash</button>
               </a>
               </div>
-              
             </div>
            
-            <div id='hero-image' class="w-full xl:col-span-7  lg:col-span-6 block">
-              <div class="w-full  sm:w-auto lg:w-[60.8125rem] xl:ml-16">
+            <div id='hero-image' class="w-full xl:col-span-7 lg:col-span-6 block">
+              <div class="w-full sm:w-auto lg:w-[60.8125rem] xl:ml-16">
                 <img src="{{ hero_image.image.url }}" alt="Dashboard image" class="rounded-l-3xl object-cover w-full lg:h-auto">
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -106,23 +162,25 @@
                                               
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-8 mx-auto">
-            <h2 class="text-2xl font-bold mb-4">So'nggi Mahsulotlar</h2>
+            <h2 class="text-3xl font-bold mb-8 text-gray-900 text-center">So'nggi Mahsulotlar</h2>
             <div class="flex flex-wrap -m-4">
                 {% for product in latest_products %}
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                        <a href="{% url 'product_detail' product.pk %}" class="block relative h-48 rounded overflow-hidden">
-                            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ product.image.url }}">
-                        </a>
-                        <div class="mt-4">
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ product.category }}</h3>
-                            <h2 class="text-gray-900 title-font text-lg font-medium break-words">{{ product.name }}</h2>
-                            <p class="mt-1">{{ product.price }} so'm</p>
+                        <div class="product-card">
+                            <a href="{% url 'product_detail' product.pk %}" class="block relative h-48 rounded-t-lg overflow-hidden">
+                                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ product.image.url }}">
+                            </a>
+                            <div class="mt-4 p-4">
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase">{{ product.category }}</h3>
+                                <h2 class="text-gray-900 title-font text-lg font-semibold break-words">{{ product.name }}</h2>
+                                <p class="mt-1 text-green-600 font-medium">{{ product.price }} so'm</p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="mt-8 text-center">
-                <a href="{% url 'product_list' %}" class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300">Barchasini ko'rish</a>
+                <a href="{% url 'product_list' %}" class="btn bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 inline-block">Barchasini ko'rish</a>
             </div>
         </div>
     </section>
@@ -130,22 +188,20 @@
     <footer class="w-full py-14">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="max-w-3xl mx-auto">
-              <p href="/" class="flex justify-center w-content items-center gap-2">
-                  <img src="{% static 'logo/pngLogo.png' %}" alt="logo" class="w-16 h-16">
-                  <span class="text-2xl font-bold text-gray-500">Sifatli Bozor</span>
+              <p href="/" class="flex justify-center w-content items-center gap-3 transform hover:scale-105 transition duration-300">
+                  <img src="{% static 'logo/pngLogo.png' %}" alt="logo" class="w-16 h-16 rounded-full shadow-md">
+                  <span class="text-2xl font-bold text-gray-800 tracking-tight">Sifatli Bozor</span>
               </p>
-                  <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-10 border-b border-gray-200">
-                      <li><a href="#" class="text-gray-800 hover:text-gray-900">Bosh Sahifa</a></li>
-                      <li><a href="/products/" class=" text-gray-800 hover:text-gray-900">Mahsulotlar</a></li>
-
-                  </ul>
-                  <span class="text-lg text-gray-500 text-center block">©<a href="/">Sifatli Bozor</a> 2024, Xizmatlar litsenziyalangan.</span>
+              <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-10 border-b border-gray-200">
+                  <li><a href="#" class="text-gray-700 hover:text-green-600 transition duration-300 font-medium">Bosh Sahifa</a></li>
+                  <li><a href="/products/" class="text-gray-700 hover:text-green-600 transition duration-300 font-medium">Mahsulotlar</a></li>
+              </ul>
+              <span class="text-lg text-gray-500 text-center block">©<a href="/" class="hover:text-green-600 transition duration-300">Sifatli Bozor</a> 2024, Xizmatlar litsenziyalangan.</span>
           </div>
       </div>
-  </footer>
+    </footer>
                                           
-
-      <script>
+    <script>
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");
         const menuIcon = document.querySelector(".menu-icon");
@@ -157,5 +213,4 @@
         });
     </script>
 </body>
-</html>
 </html>

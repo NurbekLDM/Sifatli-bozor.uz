@@ -6,38 +6,111 @@
     <title>Sifatli Bozor</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="icon" href="{% static 'logo/logo.png' %}"  type="images/png">
+    <link rel="icon" href="{% static 'logo/logo.png' %}" type="images/png">
     <style>
+        /* Navigation Enhancements */
+        nav {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
-            height:fit-content;
             margin-top: 60px;
             width: 100%;
-  
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         }
+
         .mobile-menu.open {
             transform: translateX(0);
         }
+
+        .mobile-menu ul li a {
+            padding: 1rem 1.5rem;
+            color: #374151;
+            font-weight: 500;
+            border-bottom: 1px solid #f1f5f9;
+            display: block;
+        }
+
+        .mobile-menu ul li a:hover {
+            background: #10b981;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Form Styling */
+        .search-form input, .search-form select {
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .search-form input:focus, .search-form select:focus {
+            border-color: #10b981;
+            box-shadow: 0 2px 10px rgba(16,185,129,0.2);
+            outline: none;
+        }
+
+        .search-form button {
+            box-shadow: 0 4px 15px rgba(16,185,129,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16,185,129,0.3);
+        }
+
+        /* Product Cards */
+        .product-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
     <nav class="bg-white shadow-lg">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between">
                 <div class="flex space-x-7">
-                    <a href="/" class="flex items-center py-4 px-2">
-                        <span class="font-semibold text-gray-500 text-lg">Sifatli Bozor</span>
+                    <a href="/" class="flex items-center py-4 px-2 transform hover:scale-105 transition duration-300">
+                        <span class="font-bold text-gray-800 text-xl tracking-tight">Sifatli Bozor</span>
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="/" class="py-4 px-2 text-gray-500 hover:text-green-500 transition duration-300 font-semibold">Bosh sahifa</a>
-                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Mahsulotlar</a>
-    
+                    <a href="/" class="py-4 px-4 text-gray-700 hover:text-green-600 transition duration-300 font-medium rounded-full hover:bg-green-50">Bosh sahifa</a>
+                    <a href="" class="py-4 px-4 text-gray-700 font-medium hover:text-green-600 transition duration-300 rounded-full hover:bg-green-50">Mahsulotlar</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button class="outline-none mobile-menu-button">
-                        <svg class="w-6 h-6 text-gray-500 hover:text-green-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <button class="outline-none mobile-menu-button p-2 rounded-full hover:bg-gray-100">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-green-600" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path class="menu-icon" d="M4 6h16M4 12h16M4 18h16"></path>
                             <path class="close-icon hidden" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -45,50 +118,52 @@
                 </div>
             </div>
         </div>
-        <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50">
+        <div class="mobile-menu fixed top-0 right-0 w-64 h-full shadow-xl z-50">
             <ul>
-                <li><a href="/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Bosh sahifa</a></li>
-                <li><a href="" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Mahsulotlar</a></li>
+                <li><a href="/" class="transition duration-300">Bosh sahifa</a></li>
+                <li><a href="" class="transition duration-300">Mahsulotlar</a></li>
             </ul>
         </div>
     </nav>
-    <div class="container mx-auto mt-5">
-        <h1 class="text-3xl ml-4 font-bold mb-4">Mahsulotlar</h1>
-        <form method="get" class="mb-4">
-
-            <div class="flex px-6">
-                <input type="text" name="q" class="rounded-lg form-input pl-4 mr-2 w-full" placeholder="Mahsulot izlash..." value="{{ query }}">
-                <button type="submit" class="btn bg-green-500 rounded-lg text-white px-4 py-2">Izlash</button>
+    
+    <div class="container mx-auto mt-8 px-4">
+        <h1 class="text-4xl font-extrabold mb-6 text-gray-900 tracking-tight">Mahsulotlar</h1>
+        <form method="get" class="mb-8 search-form">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <input type="text" name="q" class="rounded-lg px-4 py-3 w-full text-gray-700 focus:ring-2 focus:ring-green-500" placeholder="Mahsulot izlash..." value="{{ query }}">
+                <button type="submit" class="bg-green-500 rounded-lg text-white px-6 py-3 hover:bg-green-600 font-medium">Izlash</button>
             </div>
-            <div class="flex px-6 mt-4">
-                <select name="category" class="rounded-lg form-select mr-2 w-full">
+            <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                <select name="category" class="rounded-lg px-4 py-3 w-full text-gray-700 focus:ring-2 focus:ring-green-500 bg-white">
                     <option value="">Barcha kategoriyalar</option>
                     {% for category in categories %}
                         <option value="{{ category.id }}" {% if category.id == selected_category %}selected{% endif %}>{{ category.name }}</option>
                     {% endfor %}
                 </select>
-                <select name="sort" class="rounded-lg form-select w-full">
-                    <option  value="">Saralash</option>
+                <select name="sort" class="rounded-lg px-4 py-3 w-full text-gray-700 focus:ring-2 focus:ring-green-500 bg-white">
+                    <option value="">Saralash</option>
                     <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Narx bo'yicha (O'sish tartibida)</option>
                     <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Narx bo'yicha (Kamayish tartibida)</option>
                 </select>
-                <button type="submit" class="btn bg-green-500 rounded-lg text-white px-4 py-2 ml-2">Saralash</button>
+                <button type="submit" class="bg-green-500 rounded-lg text-white px-6 py-3 hover:bg-green-600 font-medium">Saralash</button>
             </div>
-       
         </form>
     </div>
+    
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-8 mx-auto">
             <div class="flex flex-wrap -m-4">
                 {% for product in products %}
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                        <a href="{% url 'product_detail' product.pk %}" class="block relative h-48 rounded overflow-hidden">
-                            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ product.image.url }}">
-                        </a>
-                        <div class="mt-4">
-                            <h3 class="text-gray-500 text-xs w-fit tracking-widest title-font mb-1">{{ product.category}}</h3>
-                            <h2 class="text-gray-900 title-font text-lg font-medium break-words">{{ product.name }}</h2>
-                            <p class="mt-1">{{ product.price }} so'm</p>
+                        <div class="product-card">
+                            <a href="{% url 'product_detail' product.pk %}" class="block relative h-48 rounded-t-lg overflow-hidden">
+                                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ product.image.url }}">
+                            </a>
+                            <div class="mt-4 p-4">
+                                <h3 class="text-gray-500 text-xs tracking-widest uppercase mb-1 bg-gray-100 w-fit px-2 py-1 rounded-full">{{ product.category}}</h3>
+                                <h2 class="text-gray-900 text-lg font-semibold break-words leading-tight">{{ product.name }}</h2>
+                                <p class="mt-2 text-green-600 font-medium text-lg">{{ product.price }} so'm</p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}            
@@ -96,22 +171,22 @@
         </div>
     </section>
 
-
     <footer class="w-full py-12">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto">
-                <p href="/" class="flex justify-center w-content items-center gap-2">
-                    <img src="{% static 'logo/pngLogo.png' %}" alt="logo" class="w-16 h-16">
-                    <span class="text-2xl font-bold text-gray-500">Sifatli Bozor</span>
+                <p href="/" class="flex justify-center items-center gap-3 transform hover:scale-105 transition duration-300">
+                    <img src="{% static 'logo/pngLogo.png' %}" alt="logo" class="w-16 h-16 rounded-full shadow-md">
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">Sifatli Bozor</span>
                 </p>
-                    <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-4 border-b border-gray-200">
-                        <li><a href="/" class="text-gray-800 hover:text-gray-900">Bosh Sahifa</a></li>
-                        <li><a href="/products/" class=" text-gray-800 hover:text-gray-900">Mahsulotlar</a></li>
-                    </ul>
-                    <span class="text-lg text-gray-500 text-center block">©<a href="/">Sifatli Bozor</a> 2024, Xizmatlar litsenziyalangan.</span>
+                <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-4 border-b border-gray-200">
+                    <li><a href="/" class="text-gray-700 hover:text-green-600 transition duration-300 font-medium">Bosh Sahifa</a></li>
+                    <li><a href="/products/" class="text-gray-700 hover:text-green-600 transition duration-300 font-medium">Mahsulotlar</a></li>
+                </ul>
+                <span class="text-lg text-gray-500 text-center block">©<a href="/" class="hover:text-green-600 transition duration-300">Sifatli Bozor</a> 2024, Xizmatlar litsenziyalangan.</span>
             </div>
         </div>
     </footer>
+    
     <script>
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");

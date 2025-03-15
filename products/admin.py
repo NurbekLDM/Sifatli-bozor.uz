@@ -1,7 +1,7 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from .models import Product, Inquiry, Category, HeroImage
 
-@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'created_at', 'category', 'image_preview')
 
@@ -9,30 +9,35 @@ class ProductAdmin(admin.ModelAdmin):
         if obj.image:
             return f'<img src="{obj.image.url}" width="50" height="50">'
         return "No Image"
+    
     image_preview.allow_tags = True
     image_preview.short_description = 'Rasm'
 
-    class Meta:
-        verbose_name = 'Mahsulot'
-        verbose_name_plural = 'Mahsulotlar'
+admin.site.register(Product, ProductAdmin)
 
-@admin.register(Inquiry)
+
 class InquiryAdmin(admin.ModelAdmin):
     list_display = ('product', 'name', 'surname', 'phone', 'created_at')
 
-    class Meta:
-        verbose_name = 'Buyurtma'
-        verbose_name_plural = 'Buyurtmalar'
+    def has_add_permission(self, request):
+        # Faqat superuser qo'sha oladi
+        return request.user.is_superuser
 
-@admin.register(Category)
+    def has_change_permission(self, request, obj=None):
+        # Faqat superuser o'zgartira oladi
+        return request.user.is_superuser
+
+    def has_delete_permission(self, request, obj=None):
+        # Faqat superuser o'chira oladi
+        return request.user.is_superuser
+
+admin.site.register(Inquiry, InquiryAdmin)
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-    class Meta:
-        verbose_name = 'Kategoriya'
-        verbose_name_plural = 'Kategoriyalar'
+admin.site.register(Category, CategoryAdmin)
 
-@admin.register(HeroImage)
 class HeroImageAdmin(admin.ModelAdmin):
     list_display = ('description', 'image_preview')
 
@@ -40,9 +45,8 @@ class HeroImageAdmin(admin.ModelAdmin):
         if obj.image:
             return f'<img src="{obj.image.url}" width="50" height="50">'
         return "No Image"
+    
     image_preview.allow_tags = True
     image_preview.short_description = 'Rasm'
 
-    class Meta:
-        verbose_name = 'Qahramon Rasm'
-        verbose_name_plural = 'Qahramon Rasmlar'
+admin.site.register(HeroImage, HeroImageAdmin)
