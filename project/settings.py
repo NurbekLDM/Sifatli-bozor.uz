@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
+
 
 load_dotenv(".env")
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,10 +61,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / f"{os.getenv('DATABASE')}.sqlite3",
-    }
+    'default': dj_database_url.config(default='postgres://postgres:postgres@localhost:5432/github_actions')
 }
 
 AUTH_PASSWORD_VALIDATORS = [
