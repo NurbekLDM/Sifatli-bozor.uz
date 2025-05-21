@@ -91,6 +91,12 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.getenv("STATIC_ROOT", default=BASE_DIR / "staticfiles")
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://sifatli-bozor.uz",
+    "https://www.sifatli-bozor.uz"
+]
+
+
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Tashkent"
