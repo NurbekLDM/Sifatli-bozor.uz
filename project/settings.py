@@ -61,7 +61,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://postgres:postgres@localhost:5432/github_actions')
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / f"{os.getenv('DATABASE')}.sqlite3",
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
